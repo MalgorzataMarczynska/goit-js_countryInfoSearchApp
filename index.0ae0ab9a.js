@@ -1,2 +1,0 @@
-!function(){var n=document.querySelector("body"),e=document.querySelector("#search-box");document.querySelector(".country-list"),document.querySelector(".country-info");n.style.backgroundColor="Linen";var t=function(n){};e.addEventListener("input",(function(n){n.target.value,fetch(t).then((function(n){if(!n.ok)throw new Error(n.status);return n.json()})).then((function(n){return console.log(n)})).catch((function(n){return console.log(n)}))}))}();
-//# sourceMappingURL=index.0ae0ab9a.js.map
