@@ -1,0 +1,2 @@
+const e=document.querySelector("body"),o=document.querySelector("#search-box");document.querySelector(".country-list"),document.querySelector(".country-info");e.style.backgroundColor="Linen";const t=e=>{};o.addEventListener("input",(e=>{e.target.value,fetch(t).then((e=>{if(!e.ok)throw new Error(e.status);return e.json()})).then((e=>console.log(e))).catch((e=>console.log(e)))}));
+//# sourceMappingURL=index.c1be21b7.js.map
