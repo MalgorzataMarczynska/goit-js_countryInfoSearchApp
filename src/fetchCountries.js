@@ -67,25 +67,6 @@ const fetchCountries = name => {
 input.addEventListener(
   'input',
   debounce(event => {
-    fetchCountries(event.target.value), 1000;
-  })
+    fetchCountries(event.target.value);
+  }, 1000)
 );
-// const countryLink = document.querySelectorAll('.country-link');
-// const selectCountry = event => {
-//   const selectedCountry = event.currentTarget.value;
-//   console.log(selectCountry);
-//   const nameSelectedCountry = selectedCountry.textContent;
-//   const parsedName = nameSelectedCountry.trim();
-//   return countryCard(parsedName);
-// };
-
-// countryList.addEventListener('click', selectCountry);
-const countryLinks = document.querySelectorAll('.country-link');
-for (let i = 0; i < countryLinks.length; i++) {
-  countryLinks[i].addEventListener('click', function (event) {
-    if (!confirm('sure u want to click ' + this.title)) {
-      event.preventDefault();
-    }
-  });
-  return countryCard(countryLinks[i]);
-}
