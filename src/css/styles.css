@@ -17,4 +17,35 @@ body {
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+  margin-left: 10px;
+}
+#search-box:focus,
+#search-box:hover {
+  outline-color: red;
+  outline-width: 2px;
+}
+li {
+  list-style: none;
+}
+.country-list {
+  padding-left: 10px;
+}
+.country-header {
+  padding: 5px;
+  background-color: floralwhite;
+  font-size: 20px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  box-shadow: 5px 5px 5px rgb(235, 137, 137);
+}
+.country-header > img {
+  margin-right: 10px;
+}
+.country-data {
+  padding-left: 10px;
+  background-color: white;
+  font-size: 18px;
+  padding: 5px;
+  box-shadow: 5px 5px 5px rgb(235, 137, 137, 0.3);
 }
