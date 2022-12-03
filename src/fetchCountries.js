@@ -8,7 +8,10 @@ body.style.backgroundColor = 'Linen';
 
 const getApiRecord = name =>
   `https://restcountries.com/v2/name/${name}?fields=name,capital,population,flags,languages`;
-
+const clearHtml = () => {
+  countryList.innerHTML = '';
+  countryInfo.innerHTML = '';
+};
 const countryCard = ({ flags, name, capital, population, languages }) => {
   const card = document.createElement('article');
   const parsedLangs = languages.map(lang => lang.name).join(', ');
@@ -21,8 +24,7 @@ const countryCard = ({ flags, name, capital, population, languages }) => {
   <div class='country-data'><b>Population:</b> ${population}</div>
   <div class='country-data'><b>Languages:</b> ${parsedLangs}</div>
   `;
-  countryList.innerHTML = '';
-  countryInfo.innerHTML = '';
+  clearHtml();
   countryInfo.append(card);
 };
 const countriesList = countries => {
@@ -35,19 +37,31 @@ const countriesList = countries => {
 
     return item;
   });
-  countryInfo.innerHTML = '';
-  countryList.innerHTML = '';
+  clearHtml();
   countryList.append(...countryItems);
 };
 
 const fetchCountries = name => {
   const parsedName = name.trim();
-  if (parsedName.length === 0) return;
+  const reg = new RegExp('^\\d+$');
+  const test = reg.test(parsedName);
+  if (parsedName.length === 0) {
+    clearHtml();
+    return Notiflix.Notify.info('Enter any character!');
+  }
+  if (test === true) {
+    clearHtml();
+    return Notiflix.Notify.info('You cannot use a number!');
+  }
   const url = getApiRecord(parsedName);
   return fetch(url)
     .then(res => {
-      if (!res.ok) throw new Error('We find nothing that name!');
-
+      if (!res.ok || test === true) {
+        clearHtml();
+        throw new Error(
+          'We find nothing that name! If name contains numbers please use a letters only!'
+        );
+      }
       return res.json();
     })
     .then(countries => {
@@ -68,5 +82,5 @@ input.addEventListener(
   'input',
   debounce(event => {
     fetchCountries(event.target.value);
-  }, 1000)
+  }, 300)
 );
