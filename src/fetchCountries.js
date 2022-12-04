@@ -43,24 +43,23 @@ const countriesList = countries => {
 
 const fetchCountries = name => {
   const parsedName = name.trim();
-  const reg = new RegExp('^\\d+$');
+  const reg = new RegExp('^[a-zA-Z s]*$');
   const test = reg.test(parsedName);
+  console.log(test);
   if (parsedName.length === 0) {
     clearHtml();
     return Notiflix.Notify.info('Enter any character!');
   }
-  if (test === true) {
+  if (test !== true) {
     clearHtml();
-    return Notiflix.Notify.info('You cannot use a number!');
+    return Notiflix.Notify.info('You have to use a letters and space only!');
   }
   const url = getApiRecord(parsedName);
   return fetch(url)
     .then(res => {
-      if (!res.ok || test === true) {
+      if (!res.ok) {
         clearHtml();
-        throw new Error(
-          'We find nothing that name! If name contains numbers please use a letters only!'
-        );
+        throw new Error('We find nothing that name!');
       }
       return res.json();
     })
