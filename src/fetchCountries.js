@@ -1,10 +1,9 @@
-const debounce = require('lodash.debounce');
+import debounce from "lodash.debounce";
 import Notiflix from 'notiflix';
-const body = document.querySelector('body');
 const input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
-body.style.backgroundColor = 'Linen';
+
 
 const getApiRecord = name =>
   `https://restcountries.com/v2/name/${name}?fields=name,capital,population,flags,languages`;
@@ -44,8 +43,7 @@ const countriesList = countries => {
 const fetchCountries = name => {
   const parsedName = name.trim();
   const reg = new RegExp('^[a-zA-Z s]*$');
-  const test = reg.test(parsedName);
-  console.log(test);
+  const test = reg.test(parsedName);  
   if (parsedName.length === 0) {
     clearHtml();
     return Notiflix.Notify.info('Enter any character!');
